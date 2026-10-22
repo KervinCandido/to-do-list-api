@@ -36,20 +36,22 @@ br.com.kervincandido.portfolio
 A principal entidade da api é a Tarefa.
 
 ### Composição das Entidades
-**Task** (Tarefa)
-- Title (Título): Texto curto.
-- Description (Descrição): Texto longo (opcional).
-- Status (Situação): Estado atual da tarefa no fluxo.
-- Priority (Prioridade): Nível de urgência da tarefa.
-- CreatedAt (Data de Criação): Registro de tempo automático de quando a tarefa foi aberta.
-- DueDate (Data de Entrega): Data limite estabelecida como prazo.
-- CompletedAt (Data de Conclusão): Registro de tempo de quando a tarefa foi concluída.
-**Status** (Situação):
-- To Do (Fazer)
-- Doing (Fazendo)
-- Done (Feito)
-**Priority** (Prioridade):
-- Low (Baixa)
-- Medium (Média)
-- High (Alta)
-- Urgent (Urgente)
+- **Task** (Tarefa)
+    - Title (Título): Texto curto.
+    - Description (Descrição): Texto longo (opcional).
+    - Status (Situação): Estado atual da tarefa no fluxo.
+    - Priority (Prioridade): Nível de urgência da tarefa.
+    - CreatedAt (Data de Criação): Registro de tempo automático de quando a tarefa foi aberta.
+    - DueDate (Data de Entrega): Data limite estabelecida como prazo.
+    - CompletedAt (Data de Conclusão): Registro de tempo de quando a tarefa foi concluída.
+
+- **Status** (Situação):
+    - To Do (Fazer)
+    - Doing (Fazendo)
+    - Done (Feito)
+
+- **Priority** (Prioridade):
+    - Low (Baixa)
+    - Medium (Média)
+    - High (Alta)
+    - Urgent (Urgente)
