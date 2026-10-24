@@ -1,6 +1,7 @@
 package br.com.kervincandido.portfolio.domain.model;
 
 import br.com.kervincandido.portfolio.domain.exception.DateBeforeDueDateException;
+import br.com.kervincandido.portfolio.domain.exception.InvalidTaskStateException;
 
 import java.time.Clock;
 import java.time.Instant;
@@ -13,11 +14,11 @@ public class Task {
     private final Long id;
     private final String title;
     private final String description;
-    private final Status status;
+    private Status status;
     private final Priority priority;
     private final Instant createdAt;
     private final LocalDate dueDate;
-    private final Instant completedAt;
+    private Instant completedAt;
 
     private Task(Builder builder) {
         this.id = builder.id;
@@ -49,6 +50,25 @@ public class Task {
                 .createdAt(Instant.now(clock))
                 .dueDate(dueDate)
                 .build();
+    }
+
+    public void doing() {
+        this.status = switch (this.status) {
+            case Status.TO_DO -> Status.DOING;
+            case Status.DOING -> throw new InvalidTaskStateException("Task is already in progress");
+            case Status.DONE -> throw new InvalidTaskStateException("Task is already completed");
+        };
+    }
+
+    public void done(Clock clock) {
+        this.status = switch (this.status) {
+            case Status.TO_DO -> throw new InvalidTaskStateException("Task is still to do");
+            case Status.DOING -> {
+                this.completedAt = Instant.now(clock);
+                yield Status.DONE;
+            }
+            case Status.DONE -> throw new InvalidTaskStateException("Task is already completed");
+        };
     }
 
     private static Builder builder () {
